@@ -1,6 +1,8 @@
 # msexcel-builder
 
-A simple and fast library to create MS Office Excel(>2007) xlsx files(Compatible with the OpenOffice document format). 
+A simple and fast library to create MS Office Excel(>2007) xlsx files(Compatible with the OpenOffice document format).
+
+Forked from [msexcel-builder](https://github.com/chuanyi/msexcel-builder)
 
 Features:
 
@@ -229,18 +231,7 @@ In node.js
 
 ## Release notes
 
-v0.1.0
-* Generate JSZip object, dropping need to generate temporary files on disk.
-* Removed dependency on `fs-extra` and `exec` and `easy-zip`.
-* Added dependency on `js-zip`.
-* Removed method `save` and replaced it with `generate(callback)` that returns a JSZip object.
-* This now theoretically should be able to run in the browser, though that is not tested.
-* Also refactored base Excel files so they are read from code rather than from disk.
+v0.0.1
 
-v0.0.2:
-* Switch compress work to easy-zip to support Heroku deployment.
-
-v0.0.1: Includes
-
-* First release.
-* Using 7z.exe to do compress work, so only support windows now.
+* Fork from v0.1.0 of [msexcel-builder](https://github.com/chuanyi/msexcel-builder)
+* Merge fix for fill colour by [aloteot](https://github.com/aloteot/msexcel-builder/commit/08bac71924eaa3b4aec84c26f8df3d32073d85da)

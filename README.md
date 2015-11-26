@@ -185,8 +185,7 @@ The options may contain:
 The options may contain:
 
   * `type` - (String) fill type: such as 'solid'
-  * `fgColor` - (String) front color
-  * `bgColor` - (String) background color
+  * `fgColor` - (String) background color in RGBA (e.g. FFFFFF00)
 
 * `border_style` - (Object) border style options
 The options may contain:

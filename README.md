@@ -103,11 +103,21 @@ Save current workbook.
 
 * `callback` - (Function) Callback function to handle save result.
 
+Returns a Promise which is resolved when save completes.
+
 Example:
 
 ```javascript
 workbook.save(function(err){
   console.log('workbook saved ' + (err?'failed':'ok'));
+});
+```
+or
+```javascript
+workbook.save().then(function(){
+  console.log('workbook saved');
+}).catch(function(err){
+  console.log('save failed');
 });
 ```
 

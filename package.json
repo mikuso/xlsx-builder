@@ -14,7 +14,7 @@
   "bugs": {
     "url": "https://github.com/mikuso/xlsx-builder/issues"
   },
-  "main": "./lib/msexcel-builder.js",
+  "main": "./lib/xlsx-builder.js",
   "engines": {
     "node": "*"
   },
@@ -23,6 +23,8 @@
   },
   "dependencies": {
     "async": "~0.2.6",
+    "bluebird": "^3.0.5",
+    "fs-extra-promise": "^0.3.1",
     "jszip": "^2.5.0",
     "xmlbuilder": ">=0.4.2"
   }

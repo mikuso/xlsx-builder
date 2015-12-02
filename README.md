@@ -23,14 +23,14 @@ npm install msexcel-builder
 ```
 
 ```javascript
-var excelbuilder = require('msexcel-builder');
+var xlsxBuilder = require('xlsx-builder');
 ```
 
 Then create a sample workbook with one sheet and some data.
 
 ```javascript
-  // Create a new workbook file in current working-path
-  var workbook = excelbuilder.createWorkbook('./', 'sample.xlsx')
+  // Create a new workbook
+  var workbook = xlsxBuilder.createWorkbook()
   
   // Create a new worksheet with 10 columns and 12 rows
   var sheet1 = workbook.createSheet('sheet1', 10, 12);
@@ -41,17 +41,14 @@ Then create a sample workbook with one sheet and some data.
     sheet1.set(i, 1, 'test'+i);
   
   // Save it
-  workbook.save(function(err){
-    if (err)
-      throw err;
-    else
-      console.log('congratulations, your workbook created');
+  workbook.save('./mybook.xslx').then(function(){
+    console.log('congratulations, your workbook created');
   });
 ```
 
 or return a JSZip object that can be used to stream the contents (and even save it to disk):
 
-```
+```javascript
    workbook.generate(function(err, jszip) {
      if (err)
        throw err;
@@ -68,18 +65,15 @@ or return a JSZip object that can be used to stream the contents (and even save 
 
 Create a new workbook file.
 
-* `save_path` - (String) The path to save workbook.
-* `file_name` - (String) The file name of workbook.
-
 Returns a `Workbook` Object.
 
-Example: create a xlsx file saved to `C:\test.xlsx`
+Example:
 
 ```javascript
-var workbook = excelbuilder.createWorkbook('C:\','test.xlsx');
+var workbook = xlsxBuilder.createWorkbook();
 ```
 
-### Workbook.createSheet(sheet_name,column_count,row_count)
+### Workbook.createSheet(sheet_name, column_count, row_count)
 
 Create a new worksheet with specified columns and rows
 
@@ -97,10 +91,11 @@ Example: Create a new sheet named 'sheet1' with 5 columns and 8 rows
 var sheet1 = workbook.createSheet('sheet1', 5, 8);
 ```
 
-### Workbook.save(callback)
+### Workbook.save(save_path, callback)
 
 Save current workbook.
 
+* `save_path` - (String) The path to save workbook.
 * `callback` - (Function) Callback function to handle save result.
 
 Returns a Promise which is resolved when save completes.
@@ -108,22 +103,12 @@ Returns a Promise which is resolved when save completes.
 Example:
 
 ```javascript
-workbook.save(function(err){
-  console.log('workbook saved ' + (err?'failed':'ok'));
-});
-```
-or
-```javascript
-workbook.save().then(function(){
+workbook.save('./example.xlsx').then(function(){
   console.log('workbook saved');
 }).catch(function(err){
-  console.log('save failed');
+  console.error('save failed', err);
 });
 ```
-
-### Workbook.cancel()
-
-Cancel to make current workbook,drop all data.
 
 ### Sheet.set(col, row, str)
 

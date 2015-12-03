@@ -218,6 +218,7 @@ v1.0.0
   * Workbook.generate() returns a Promise for a buffer instead of a JSZip object
   * Workbook.save() requires a path
 * Some localization changes. English defaults instead of Chinese.
+* Support for "number" cells
 
 v0.0.2
 

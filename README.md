@@ -19,7 +19,7 @@ Features:
 Install it in node.js:
 
 ```
-npm install msexcel-builder
+npm install xlsx-builder
 ```
 
 ```javascript
@@ -42,21 +42,16 @@ Then create a sample workbook with one sheet and some data.
   
   // Save it
   workbook.save('./mybook.xslx').then(function(){
-    console.log('congratulations, your workbook created');
+    console.log('workbook saved');
   });
 ```
 
-or return a JSZip object that can be used to stream the contents (and even save it to disk):
+or return a Buffer of the contents:
 
 ```javascript
-   workbook.generate(function(err, jszip) {
-     if (err)
-       throw err;
-     else {
-       var buffer = jszip.generate({type: "nodebuffer"});
-       require('fs').writeFile(workbook.fpath + '/' + workbook.fname, buffer, function (err) {
-     }
-   });
+  workbook.generate().then(function(buff) {
+    console.log('workbook Buffer', buff);
+  });
 ```
 
 ## API
@@ -193,7 +188,7 @@ The options may contain:
 Example:
 
 ```javascript
-sheet1.font(2, 1, {name:'黑体',sz:'24',family:'3',scheme:'-',bold:'true',iter:'true'});
+sheet1.font(2, 1, {name:'Calibri',sz:'24',family:'3',scheme:'-',bold:'true',iter:'true'});
 sheet1.fill(3, 3, {type:'solid',fgColor:'8',bgColor:'64'});
 sheet1.border(1, 1, {left:'medium',top:'medium',right:'thin',bottom:'medium'});
 ```
@@ -214,16 +209,19 @@ Example: Merge the first row as title from (1,1) to (5,1)
 sheet1.merge({col:1,row:1},{col:5,row:1});
 ```
 
-## Testing
-
-In node.js
-
-```
-> cd test
-> node test.js
-```
-
 ## Release notes
+
+v1.0.0
+
+* Breaking API changes
+  * xlsxBuilder.createWorkbook() no longer accepts file/path params
+  * Workbook.generate() returns a Promise for a buffer instead of a JSZip object
+  * Workbook.save() requires a path
+* Some localization changes. English defaults instead of Chinese.
+
+v0.0.2
+
+* Callback methods now also return Promises
 
 v0.0.1
 
